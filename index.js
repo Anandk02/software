@@ -5,6 +5,8 @@ const authRouter = require("./routes/admin/auth");
 const productRouter = require("./routes/admin/product");
 const products = require("./routes/products");
 
+
+const port = 3000;
 const app = express();
 
 // MiddleWare
@@ -27,6 +29,6 @@ app.use(products);
 app.use(productRouter);
 
 // Server Runnning
-app.listen(3000, () => {
-  console.log("Server is Runing Port : 3000");
+app.listen(port, () => {
+  console.log(`Server is Runing Port on : 3000`);
 });
