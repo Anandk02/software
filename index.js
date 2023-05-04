@@ -4,6 +4,7 @@ const cookieSession = require("cookie-session");
 const authRouter = require("./routes/admin/auth");
 const productRouter = require("./routes/admin/product");
 const products = require("./routes/products");
+const cartRouter = require('./routes/carts');
 
 
 const port = 3000;
@@ -27,6 +28,7 @@ app.use(
 app.use(authRouter);
 app.use(products);
 app.use(productRouter);
+app.use(cartRouter);
 
 // Server Runnning
 app.listen(port, () => {

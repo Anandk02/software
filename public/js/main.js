@@ -315,3 +315,20 @@
 
 })(jQuery);
 
+
+
+// Store user ip address
+
+const ipAddress = document.getElementsByClassName('.ipaddress');
+function getIP() {
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET', 'https://api.ipify.org', false);
+	xhr.send();
+	return xhr.responseText;
+  }
+  
+  var visitorIP = getIP();
+  console.log(visitorIP);
+
+  
+  

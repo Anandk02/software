@@ -1,10 +1,54 @@
-const mainlayout = require("../MainPages/mainlayout");
+const layout = require("../MainPages/mainlayout");
 
-module.exports = ({ content }) => {
-  return mainlayout({
+module.exports = ({ items }) => {
+
+    let totalPrice = 0;
+    for(let item of items){
+        totalPrice += item.quantity * item.product.price;
+    }
+
+
+    // const totalPrice = items.reduce((prev , item) => {
+    //     return  prev + item.quantity * item.product.proce;
+    // }, 0);
+
+  const renderItems = items
+    .map((item) => {
+      return `
+
+        <tr class="text-center">
+						        <td class="product-remove">
+                    <form method="post">
+                    <a href="#"><span class="ion-ios-close"></span></a>
+                    </form>
+                    </td>
+						        
+						        <td class="image-prod"><div class="img" style="background-image:url();"></div></td>
+						        
+						        <td class="product-name">
+						        	<h3>${item.product.title}</h3>
+						        	
+						        </td>
+						        
+						        <td class="price">${item.product.price}</td>
+						        
+						        <td class="quantity">
+						        	<div class="input-group mb-3">
+					             	<input name="quantity" class="quantity form-control input-number" value="${item.quantity}" min="1" max="100">
+					          	</div>
+					          </td>
+						        
+						        <td class="total">${item.product.price * item.quantity}  </td>
+						      </tr><!-- END TR-->
+
+        `;
+    })
+    .join("");
+
+  return layout({
     content: `
-        <div class="py-1 bg-black">
-    	<div class="container">
+    <div class="py-1 bg-black">
+    <div class="container">
         <div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
             <div class="col-lg-12 d-block">
                 <div class="row d-flex">
@@ -32,89 +76,84 @@ module.exports = ({ content }) => {
   </button>
 
   <div class="collapse navbar-collapse" id="ftco-nav">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
-      <li class="nav-item"><a href="/shop" class="nav-link">Shop</a></li>
-      <li class="nav-item "><a href="/about-us" class="nav-link">About-us</a></li>
-      <li class="nav-item active"><a href="/contact" class="nav-link">Contact</a></li>
-      <li class="nav-item "><a href="/cart" class="nav-link"><span class="icon-shopping_cart"></span>Cart</a></li>
-      <li class="nav-item cta cta-colored"><a href="/accounts/signup" class="nav-link"><span class="icon-user"></span> Account</a></li>
-    </ul>
+  <ul class="navbar-nav ml-auto">
+  <li class="nav-item "><a href="/" class="nav-link">Home</a></li>
+  <li class="nav-item "><a href="/shop" class="nav-link">Shop</a></li>
+  <li class="nav-item "><a href="/about-us" class="nav-link">About-us</a></li>
+  <li class="nav-item "><a href="/contact" class="nav-link">Contact</a></li>
+  <li class="nav-item active "><a href="/cart" class="nav-link"><span class="icon-shopping_cart"></span>Cart</a></li>
+  <li class="nav-item cta cta-colored"><a href="/accounts/signup" class="nav-link"><span class="icon-user"></span> Account</a></li>
+</ul>
   </div>
 </div>
 </nav>
 <!-- END nav -->
-
-    <div class="hero-wrap hero-bread" style="background-image: url('images/bg_6.jpg');">
-      <div class="container">
-        <div class="row no-gutters slider-text align-items-center justify-content-center">
-          <div class="col-md-9 ftco-animate text-center">
-          	<p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Contact</span></p>
-            <h1 class="mb-0 bread">Contact Us</h1>
-            </div>
-        <div class="row">
+<div class="hero-wrap hero-bread" style="background-image: url('images/bg_6.jpg');">
+  <div class="container">
+    <div class="row no-gutters slider-text align-items-center justify-content-center">
+      <div class="col-md-9 ftco-animate text-center">
+          <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Cart</span></p>
+        <h1 class="mb-0 bread">My Cart</h1>
+      </div>
+      <div class="row">
                             <p><a href="#" class="btn btn-primary px-5 py-3 mt-3 telegram"><i class="fa fa-telegram"></i> Join Telegram</a></p>
                               <p><a href="#" class="btn btn-primary px-5 py-3 mt-3 whatsapp"><i class="fa fa-whatsapp"></i> Join WhatsApp</a></p>
                             </div>
-        </div>
-          </div>
-        </div>
-      </div>
     </div>
+  </div>
+</div>
 
-    <section class="ftco-section contact-section bg-light">
-      <div class="container">
-      	<div class="row d-flex mb-5 contact-info">
-          <div class="w-100"></div>
-          <div class="col-md-3 d-flex">
-          	<div class="info bg-white p-4">
-	            <p><span>Address:</span> 198 West 21th Street, Suite 721 New York NY 10016</p>
-	          </div>
-          </div>
-          <div class="col-md-3 d-flex">
-          	<div class="info bg-white p-4">
-	            <p><span>Phone:</span> <a href="tel://1234567920">+ 1235 2355 98</a></p>
-	          </div>
-          </div>
-          <div class="col-md-3 d-flex">
-          	<div class="info bg-white p-4">
-	            <p><span>Email:</span> <a href="mailto:info@yoursite.com">info@yoursite.com</a></p>
-	          </div>
-          </div>
-          <div class="col-md-3 d-flex">
-          	<div class="info bg-white p-4">
-	            <p><span>Website</span> <a href="#">yoursite.com</a></p>
-	          </div>
-          </div>
+<section class="ftco-section ftco-cart">
+        <div class="container">
+            <div class="row">
+            <div class="col-md-12 ftco-animate">
+                <div class="cart-list">
+                    <table class="table">
+                        <thead class="thead-primary">
+                          <tr class="text-center">
+                            <th>&nbsp;</th>
+                            <th>&nbsp;</th>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        ${renderItems}
+                          <!-- END TR-->
+                        </tbody>
+                      </table>
+                  </div>
+            </div>
         </div>
-        <div class="row block-9">
-          <div class="col-md-6 order-md-last d-flex">
-            <form action="#" class="bg-white p-5 contact-form">
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Your Name">
-              </div>
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Your Email">
-              </div>
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Subject">
-              </div>
-              <div class="form-group">
-                <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
-              </div>
-              <div class="form-group">
-                <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
-              </div>
-            </form>
-          
-          </div>
-
-          <div class="col-md-6 d-flex">
-          	<div id="map" class="bg-white"></div>
-          </div>
+        <div class="row justify-content-center">
+            <div class="col col-lg-5 col-md-6 mt-5 cart-wrap ftco-animate">
+                <div class="cart-total mb-3">
+                    <h3>Cart Totals</h3>
+                    <p class="d-flex">
+                        <span>Subtotal</span>
+                        <span>${totalPrice}</span>
+                    </p>
+                    <p class="d-flex">
+                        <span>Delivery</span>
+                        <span>0.00</span>
+                    </p>
+                    <p class="d-flex">
+                        <span>Discount</span>
+                        <span>0.00</span>
+                    </p>
+                    <hr>
+                    <p class="d-flex total-price">
+                        <span>Total</span>
+                        <span>${totalPrice}</span>
+                    </p>
+                </div>
+                <p class="text-center"><a href="/checkout" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
+            </div>
         </div>
-      </div>
-    </section> 
+        </div>
+    </section>
     <footer class="ftco-footer bg-light ftco-section">
     <div class="container">
         <div class="row">
@@ -187,13 +226,13 @@ module.exports = ({ content }) => {
       </div>
     </div>
   </footer>
-    
-  
 
-  <!-- loader -->
-  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
-        
+
+<!-- loader -->
+<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+
         `,
   });
 };

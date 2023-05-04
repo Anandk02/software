@@ -7,7 +7,7 @@ module.exports = ({ products }) => {
 
                 <tr class="bg-blue">
                     <td class="pt-2">
-                        <img src="https://images.pexels.com/photos/3765114/pexels-photo-3765114.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="rounded-circle" alt=""> 
+                        <img src="" class="rounded-circle" alt="product image"> 
                         <div class="pl-lg-5 pl-md-3 pl-1 name">${
                           product.title
                         }</div>
