@@ -37,7 +37,7 @@ router.post(
     sendWelcomeEmail(user.email, user.name);
     //Session
     req.session.userId = user.id;
-    res.redirect("/admin/product");
+    res.redirect("/");
   }
 );
 
@@ -55,7 +55,7 @@ router.post(
     const user = await userRepo.getOneBy({ email });
 
     req.session.userId = user.id;
-    res.redirect("/admin/product");
+    res.redirect("/");
   }
 );
 

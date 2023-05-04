@@ -77,7 +77,7 @@ module.exports = ({ products }) => {
           <li class="nav-item "><a href="/about-us" class="nav-link">About-us</a></li>
           <li class="nav-item "><a href="/contact" class="nav-link">Contact</a></li>
           <li class="nav-item "><a href="/cart" class="nav-link"><span class="icon-shopping_cart"></span>Cart</a></li>
-          <li class="nav-item cta cta-colored"><a href="/accounts/signup" class="nav-link"><span class="icon-user"></span> Account</a></li>
+         
         </ul>
           </div>
         </div>

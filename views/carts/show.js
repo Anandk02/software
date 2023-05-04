@@ -1,25 +1,19 @@
 const layout = require("../MainPages/mainlayout");
 
 module.exports = ({ items }) => {
-
-    let totalPrice = 0;
-    for(let item of items){
-        totalPrice += item.quantity * item.product.price;
-    }
-
-
-    // const totalPrice = items.reduce((prev , item) => {
-    //     return  prev + item.quantity * item.product.proce;
-    // }, 0);
-
+  let totalPrice = 0;
+  for (let item of items) {
+    totalPrice += item.quantity * item.product.price;
+  }
   const renderItems = items
     .map((item) => {
       return `
 
-        <tr class="text-center">
+        <tr class="text-center">  
 						        <td class="product-remove">
-                    <form method="post">
-                    <a href="#"><span class="ion-ios-close"></span></a>
+                    <form method="post" action="/cart/products/delete">
+                    <input hidden value="${item.id}" name="itemId">
+                    <button class="btn btn-danger"><span class="ion-ios-close"></button>
                     </form>
                     </td>
 						        
@@ -34,7 +28,9 @@ module.exports = ({ items }) => {
 						        
 						        <td class="quantity">
 						        	<div class="input-group mb-3">
-					             	<input name="quantity" class="quantity form-control input-number" value="${item.quantity}" min="1" max="100">
+					             	<input name="quantity" class="quantity form-control input-number" value="${
+                          item.quantity
+                        }" min="1" max="100">
 					          	</div>
 					          </td>
 						        
@@ -82,7 +78,7 @@ module.exports = ({ items }) => {
   <li class="nav-item "><a href="/about-us" class="nav-link">About-us</a></li>
   <li class="nav-item "><a href="/contact" class="nav-link">Contact</a></li>
   <li class="nav-item active "><a href="/cart" class="nav-link"><span class="icon-shopping_cart"></span>Cart</a></li>
-  <li class="nav-item cta cta-colored"><a href="/accounts/signup" class="nav-link"><span class="icon-user"></span> Account</a></li>
+  
 </ul>
   </div>
 </div>
